@@ -19,8 +19,10 @@ end
 def num_points_scored(name)
   game_hash.each_key do |key1|
     i = 0 
+    binding.pry
     while game_hash[key1][:players].length > i do  
       game_hash[key1][:players][i].each_key do |key2|
+        binding.pry
         if key2 == name 
           game_hash[:away][:players][i][name][:points] 
           binding.pry
