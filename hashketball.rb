@@ -65,7 +65,7 @@ def team_names
   game_hash.each_key do |key1|
     teams = teams.push(game_hash[key1][:team_name])
   end
-  p teams 
+  teams 
 end 
 
 def player_numbers(team)
@@ -103,20 +103,21 @@ def player_stats(name)
 end
 
 def big_shoe_rebounds
-  size = 0 
+  rebounds = {} 
+  rebounds[:shoe_size] = 0
   game_hash.each_key do |key1|
     i = 0
     while game_hash[key1][:players].length > i do  
       game_hash[key1][:players][i].each_key do |key2|
-        if game_hash[key1][:players][i][key2][:shoe] > size
-          size = game_hash[key1][:players][i][key2][:shoe] 
+        if game_hash[key1][:players][i][key2][:shoe] > rebounds[:shoe_size]
+          rebounds[:shoe_size] = game_hash[key1][:players][i][key2][:shoe]
+          rebounds[:boards] = game_hash[key1][:players][i][key2][:rebounds]
         end 
-      end 
+      end
       i +=1 
-    end 
-  
-  end 
-  p size
+    end
+  end
+  rebounds[:boards]
 end 
 
 
