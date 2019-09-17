@@ -23,11 +23,8 @@ def num_points_scored(name)
       
       game_hash[key1][:players][i].each_key do |key2|
         if key2 == name 
-          p name
-          p key1 
-          p key2 
-          p game_hash[key1][:players][i]
-          p game_hash[:away][:players][0][name][:points] 
+          
+          p game_hash[:away][:players][i][name][:points] 
         end 
       end 
         # p game_hash[:away][:players][0][name][:points]
