@@ -102,6 +102,23 @@ def player_stats(name)
   stats[name] 
 end
 
+def big_shoe_rebounds
+  size = 0 
+  game_hash.each_key do |key1|
+    i = 0
+    while game_hash[key1][:players].length > i do  
+      game_hash[key1][:players][i].each_key do |key2|
+        if game_hash[key1][:players][i][key2][:shoe] > size
+          size = game_hash[key1][:players][i][key2][:shoe] 
+        end 
+      end 
+      i +=1 
+    end 
+  
+  end 
+  p size
+end 
+
 
 
 
