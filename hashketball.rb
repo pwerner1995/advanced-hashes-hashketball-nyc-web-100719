@@ -120,8 +120,88 @@ def big_shoe_rebounds
   rebounds[:boards]
 end 
 
+def most_points_scored
+  name = ""
+  most_points = 0 
+  game_hash.each_key do |key1|
+    i = 0 
+    while game_hash[key1][:players].length > i do 
+      game_hash[key1][:players][i].each_key do |key2|
+        if game_hash[key1][:players][i][key2][:points] > most_points
+          name = key2
+          most_points = game_hash[key1][:players][i][key2][:points]
+        end 
+      end
+      i +=1
+    end 
+  end 
+  name 
+end 
 
+def winning_team
+  team_score = {}
+  game_hash.each_key do |key1|
+    team_score[key1]=0 
+    i = 0 
+    while game_hash[key1][:players].length > i do 
+      game_hash[key1][:players][i].each_key do |name|
+        team_score[key1] += game_hash[key1][:players][i][name][:points]
+      end 
+    i +=1
+    end 
+  end
+  if team_score[:away] > team_score[:home]
+    game_hash[:away][:team_name]
+  else 
+    game_hash[:home][:team_name]
+  end 
+end 
 
+def player_with_longest_name
+  name = ""
+  game_hash.each_key do |key1|
+    i = 0 
+    while game_hash[key1][:players].length > i do 
+      game_hash[key1][:players][i].each_key do |key2|
+        if key2.chars.length > name.chars.length 
+          name = key2
+        end 
+      end
+      i +=1
+    end 
+  end 
+  name
+end 
 
+def long_name_steals_a_ton?
+  name = ""
+  game_hash.each_key do |key1|
+    i = 0 
+    while game_hash[key1][:players].length > i do 
+      game_hash[key1][:players][i].each_key do |key2|
+        if key2.chars.length > name.chars.length 
+          name = key2
+        end 
+      end
+      i +=1
+    end 
+  end 
+  name
+  most_steals = 0
+  name_steals = ""
+  game_hash.each_key do |key1|
+    i = 0 
+    while game_hash[key1][:players].length > i do 
+      game_hash[key1][:players][i].each_key do |key2|
+        if game_hash[key1][:players][i][key2][:steals] > most_steals
+          name_steals = key2
+          most_steals = game_hash[key1][:players][i][key2][:steals]
+        end 
+      end
+      i +=1
+    end 
+  end 
+  return name == name_steals
+end 
 
 
